@@ -1,0 +1,56 @@
+/*
+Theme Name: PatobeurWp
+Theme URI: https://www.patobeur.fr
+Author: patobeur
+Author URI: https://www.patobeur.fr
+Description: Theme Patobeur
+Version: 1.0
+Tags: wordpress, gratuit
+Text Domain: patobeur
+*/
+@font-face {
+	/* font-family: 'RobotoLight';
+	src: local('RobotoLight'), url('./assets/fonts/Roboto/RobotoLight.woff') format('woff'); */
+	/* font-family: 'LatoLig';
+	src: local('LatoLig'), url('./assets/fonts/Lato/LatoLig.woff') format('woff'); */
+	font-family: 'OpenSansRegular';
+	src: local('OpenSansRegular'), url('./assets/fonts/OpenSansRegular/OpenSansRegular.woff') format('woff');
+}
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+	/* font-family: 'RobotoLight'; */
+	/* font-family: 'LatoLig'; */
+	font-family: 'OpenSansRegular';
+}
+
+body,
+html {
+    scroll-behavior: smooth;
+    background-color: #ffffff;
+}
+.container {
+    max-width: 100%;
+    
+    h1 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    h1, h2, h3, h4, h5  {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+}
+
+/* .content {
+    padding: 20px;
+} */

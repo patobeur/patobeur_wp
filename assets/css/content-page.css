@@ -1,0 +1,24 @@
+/* content-page */
+.content-page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    padding:0;
+    margin: auto;
+    .wp-block-group {
+        width:80%;
+        margin:auto;
+        background-color: aqua;
+        .wp-block-group {
+            width:80%;
+            margin:auto;
+            background-color: rgb(10, 131, 131);
+        }
+    }
+    .wp-block-group-is-layout-constrained {
+        width:100%;
+        background-color: rgb(234, 238, 24);
+    }
+}

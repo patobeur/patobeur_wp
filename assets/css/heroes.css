@@ -1,0 +1,63 @@
+.hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 48px;
+	text-shadow: 2px 2px 4px #000;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	min-height: 320px;
+
+	.logo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height:min-content;
+		&.logo-hero {
+			a {
+				background-color: #000;
+				border-radius: 9px;
+				overflow: hidden;
+				font-size: 0;
+			}
+		}
+		img {
+		}
+	}
+
+	p {
+		margin: 0;
+
+	}
+
+	.hero-title {
+		font-size: 48px;
+		color: white;
+	}
+
+	.hero-stitle {
+		font-size: 48px;
+		color: white;
+	}
+
+	&.front-page {
+		height: 100vh;
+	}
+
+	&.page,
+	&.home {
+		height: 50vh;
+	}
+
+	&.template-home {
+		height: 100vh;
+	}
+
+	&.post {
+		height: 40vh;
+	}
+
+}

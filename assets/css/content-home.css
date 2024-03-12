@@ -1,0 +1,23 @@
+/* content-page */
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 90%;
+    max-width: 100%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); */
+    padding:0;
+    margin: auto;
+    .col {
+        width: min-content;
+        padding:5px;
+        .card {
+            height: 100%;
+            padding:5px;
+            border-radius: 7px;
+            border: 2px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+    }
+}
