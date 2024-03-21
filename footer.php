@@ -18,9 +18,6 @@
                     ]
                 ) ?>
             </nav>
-        <?php
-        get_template_part('template-parts/content', 'cookie_popup');
-        ?>
         <?php wp_footer(); ?>
         </body>
 

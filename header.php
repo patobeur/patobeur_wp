@@ -33,5 +33,26 @@
 			</a>
 		</div>
 	</nav>
-
+<?php 
+$pageModel = 'page';
+// https://developer.wordpress.org/themes/basics/conditional-tags/
+if (is_page()): 
+	// do this
+elseif (is_front_page()):
+	// do this
+elseif (is_home()): 
+	// do this
+elseif (is_single()):
+	// Returns true when any single Post (or attachment, or custom Post Type) is being displayed. This condition returns false if you are on a page.
+	// do this
+elseif (is_singular()):
+	// Returns true for any is_single, is_page, and is_attachment. It does allow testing for post types.
+	// do this
+elseif (is_page_template()):
+	// Is a Page Template being used ?
+	// do this
+elseif (is_category()):
+	// When a Category archive page is being displayed.
+endif;
+?>
 	<div class="container">

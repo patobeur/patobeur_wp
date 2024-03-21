@@ -5,9 +5,13 @@
 		<?php patobeur_get_logo(); ?>
 	</div>
 	<p>atelier muca</p>
-	<p>home : les actualités</p>
+	<?php
+	if (!empty($frontpage_titre)) echo "<p>" . $frontpage_titre . "</p>";
+	// if (!empty($blogname)) echo "<p>" . $blogname . "</p>";
+	if (!empty($blogtagline) && $blogtagline_enable) echo "<p>" . $blogtagline . "</p>";
+	?>
+	<p><?= the_title() ?></p>
 </div>
-
 <div id="articles" class="site-content">
 	<?php if (have_posts()) : ?>
 		<div class="row">

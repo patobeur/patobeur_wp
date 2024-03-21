@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template Name: Page 'home'
+ * Template Name: Page 'vide'
  * 
  */
 ?>

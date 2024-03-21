@@ -4,7 +4,7 @@ function patobeur_customize_register_footer($wp_customize)
 {
     // SECTION footer
     $wp_customize->add_section('section_footer', array(
-        'title'       => __('📄 Footer & Infos', 'muca-theme'),
+        'title'       => __('📄 Footer & Infos', 'patobeur-theme'),
         'priority'    => 30,
     ));
     // TITRE
@@ -13,7 +13,7 @@ function patobeur_customize_register_footer($wp_customize)
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('footer_titre', array(
-        'label'    => __('Titre footer', 'muca-theme'),
+        'label'    => __('Titre footer', 'patobeur-theme'),
         'section'  => 'section_footer',
         'settings' => 'footer_titre',
         'type'     => 'text',

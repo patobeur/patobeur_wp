@@ -1,108 +1,180 @@
 <?php
 // FRONTPAGE
+// Tableau global des valeurs par défaut pour la section frontpage
+$default_frontpage_values = array(
+	'frontpage' => array(
+		'section' => 'frontpage',
+		'title' => 'FrontPage',
+		'emoji' => '🗃️ ',
+		'priority' => 30,
+		'datas' => array(
+			'frontpage_hero_tagline_enable' => array(
+				'label' => 'Afficher le slogan dans le Hero',
+				'value' => true,
+				'description' => false,
+				'type' => 'checkbox',
+				'control' => 'checkbox',
+			),
+			'frontpage_titre' => array(
+				'label' => 'Titre FrontPage',
+				'value' => 'Titre par défaut',
+				'description' => false,
+				'type' => 'text',
+			),
+			'patobeur_frontpage_hero_image' => array(
+				'label' => 'URL de l\'image dans le bloc Hero',
+				'value' => get_template_directory_uri() . '/assets/img/patobeur_blanc_transp.png',
+				'description' => 'Téléchargez l\'image que vous souhaitez utiliser comme image dans votre Hero. La taille recommandée est de 300 x 300 pixels. Vous pouvez cependant changer la largeur de l\'image plus bas',
+				'type' => 'text',
+				'control' => 'image',
+			),
+			'patobeur_frontpage_hero_image_width' => array(
+				'label' => 'Largeur de l\'image',
+				'value' => '100%',
+				'description' => 'largeur image !',
+				'type' => 'text',
+			),
+			'patobeur_frontpage_hero_height' => array(
+				'label' => 'Hauteur du Hero',
+				'value' => '100vh',
+				'description' => 'Hauteur du bloc hero à 100vh par default si vide. (vh=vertical height de la fenêtre du navigateur !)',
+				'type' => 'text',
+			),
+			'patobeur_frontpage_hero_background_image' => array(
+				'label' => 'URL de l\'image',
+				'value' => get_template_directory_uri() . '/assets/img/default_background.jpg',
+				'description' => false,
+				'type' => 'text',
+				'control' => 'image',
+			),
+			'patobeur_frontpage_background_image_enable' => array(
+				'label' => 'Activer l\'image de fond',
+				'value' => true,
+				'description' => false,
+				'type' => 'checkbox',
+				'control' => 'checkbox',
+			),
+			'patobeur_frontpage_hero_background_color' => array(
+				'label' => 'Couleur de fond du bloc Hero',
+				'value' => '#ffffff',
+				'description' => false,
+				'type' => 'text',
+				'control' => 'color',
+			),
+		),
+	),
+);
+// --------------------------
+function patobeur_frontpage_datas()
+{
+	return array(
+		'frontpage' => array(
+			'section' => 'frontpage',
+			'title' => 'FrontPage',
+			'emoji' => '🗃️ ',
+			'priority' => 30,
+			'datas' => array(
+				'frontpage_hero_tagline_enable' => array(
+					'label' => 'Afficher le slogan dans le Hero',
+					'value' => true,
+					'type' => 'checkbox',
+					'control' => 'checkbox',
+				),
+				'frontpage_titre' => array(
+					'label' => 'Titre FrontPage',
+					'value' => 'Titre par défaut',
+					'type' => 'text',
+				),
+				'patobeur_frontpage_hero_image' => array(
+					'label' => 'URL de l\'image dans le bloc Hero',
+					'value' => get_template_directory_uri() . '/assets/img/patobeur_blanc_transp.png',
+					'description' => 'Téléchargez l\'image que vous souhaitez utiliser comme image dans votre Hero. La taille recommandée est de 300 x 300 pixels. Vous pouvez cependant changer la largeur de l\'image plus bas',
+					'type' => 'text',
+					'control' => 'image',
+				),
+				'patobeur_frontpage_hero_image_width' => array(
+					'label' => 'Largeur de l\'image',
+					'value' => '100%',
+					'description' => 'largeur image !',
+					'type' => 'text',
+				),
+				'patobeur_frontpage_hero_height' => array(
+					'label' => 'Hauteur du Hero',
+					'value' => '100vh',
+					'description' => 'Hauteur du bloc hero à 100vh par default si vide. (vh=vertical height de la fenêtre du navigateur !)',
+					'type' => 'text',
+				),
+				'patobeur_frontpage_hero_background_image' => array(
+					'label' => 'URL de l\'image',
+					'value' => get_template_directory_uri() . '/assets/img/default_background.jpg',
+					'type' => 'text',
+					'control' => 'image',
+				),
+				// 'patobeur_frontpage_background_image_enable' => array(
+				// 	'label' => 'Activer l\'image de fond',
+				// 	'value' => false,
+				// 	'type' => 'checkbox',
+				// 	'control' => 'checkbox',
+				// ),
+				'patobeur_frontpage_hero_background_color' => array(
+					'label' => 'Couleur de fond du bloc Hero',
+					'value' => '#ffffff',
+					'type' => 'text',
+					'control' => 'color',
+				),
+			),
+		),
+	);
+}
+// --------------------------
 function patobeur_customize_register_frontpage($wp_customize)
 {
-    // Ajouter une section dans le Customizer
-    $wp_customize->add_section('section_frontpage', array(
-        'title'       => __('📄 FrontPage & Infos', 'muca-theme'),
-        'priority'    => 30,
-    ));
+	// global $default_frontpage_values;
+	// $default_frontpage_values = patobeur_frontpage_datas();
 
-    // SLOGAN TAGLINE ENABLE or NOT
-    $wp_customize->add_setting('frontpage_hero_tagline_enable', array(
-        'default' => true,
-    ));
-    $wp_customize->add_control('frontpage_hero_tagline_enable', array(
-        'label' => __('Activer le slogan dans le Hero', 'muca-theme'),
-        'section' => 'section_frontpage',
-        'type' => 'checkbox',
-    ));
-    // Ajouter un champ de texte pour le nom
-    $wp_customize->add_setting('frontpage_titre', array(
-        'default' => 'Titre par défaut',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
+	foreach (patobeur_frontpage_datas() as $section => $values) {
+		$wp_customize->add_section('section_' . $values['section'], [
+			'title'    => $values['emoji'] . $values['title'],
+			'priority' => $values['priority'],
+		]);
 
-    $wp_customize->add_control('frontpage_titre', array(
-        'label'    => __('Titre FrontPage', 'muca-theme'),
-        'section'  => 'section_frontpage',
-        'settings' => 'frontpage_titre',
-        'type'     => 'text',
-    ));
+		foreach ($values['datas'] as $key => $data) {
+			if (!isset($data['description'])) {
+				$data['description'] = false;
+			}
+			if (!isset($data['control'])) {
+				$data['control'] = false;
+			}
+			$wp_customize->add_setting($key, [
+				'default'           => $data['value'],
+				'sanitize_callback' => 'patobeur_sanitize_' . $data['type'],
+			]);
 
-    // Ajouter un champ de texte pour l'URL de l'image
-    $wp_customize->add_setting('patobeur_frontpage_hero_image', array(
-        'default' => get_template_directory_uri() . '/assets/img/patobeur_blanc_transp.png',
-    ));
+			$tmp_frontpage_description = $data['description'] ? $data['description'] . " ( ". $key . " )" : '';
 
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'patobeur_frontpage_hero_image', array(
-        'label'    => __('URL de l\'image dans le bloc Hero', 'muca-theme'),
-        'section'  => 'section_frontpage',
-        'settings' => 'patobeur_frontpage_hero_image',
-        'description' => __('Téléchargez l\'image que vous souhaitez utiliser pour votre image se trouve dans le bloc Hero. La taille recommandée est de 300 x 300 pixels. Vous pouvez cependant changer la largeur de l\'image plus bas', 'muca-theme'),
+			$control_options = [
+				'label'       => __($data['label'], 'patobeur-theme'),
+				'section'     => 'section_' . $values['section'],
+				'settings'    => $key,
+				'type'        => $data['control'] ?? 'text',
+				'description' => __($tmp_frontpage_description, 'patobeur-theme'),
 
-    )));
-    $wp_customize->selective_refresh->add_partial('patobeur_frontpage_hero_image', array(
-        'selector' => '.logo img',
-        'render_callback' => function () {
-            return get_theme_mod('patobeur_frontpage_hero_image');
-        },
-    ));
-    // --------------------------------------------------------
-    // Ajouter un champ de texte pour la largeur de l'image
-    $wp_customize->add_setting('patobeur_frontpage_hero_image_width', array(
-        'default' => '100%',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-
-    $wp_customize->add_control('patobeur_frontpage_hero_image_width', array(
-        'label' => __('Largeur de l\'image', 'muca-theme'),
-        'section' => 'section_frontpage',
-        'type' => 'text',
-    ));
-    // --------------------------------------------------------
-    // Ajouter un champ de texte pour la hauteur du bloc hero
-    $wp_customize->add_setting('patobeur_frontpage_hero_height', array(
-        'default' => '100vh',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('patobeur_frontpage_hero_height', array(
-        'label' => __('Hauteur du Hero', 'muca-theme'),
-        'section' => 'section_frontpage',
-        'type' => 'text',
-        'description' => __('Hauteur du bloc hero à 100vh par default si vide. (vh=vertical height de la fenêtre du navigateur !)', 'muca-theme'),
-    ));
-    // --------------------------------------------------------
-    // Ajouter un champ de texte pour l'URL de l'image de fond dans le hero
-    $wp_customize->add_setting('patobeur_frontpage_hero_background_image', array(
-        'default' => get_template_directory_uri() . '/assets/img/default_background.jpg',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'patobeur_frontpage_hero_background_image', array(
-        'label'    => __('URL de l\'image', 'muca-theme'),
-        'section'  => 'section_frontpage',
-        'settings' => 'patobeur_frontpage_hero_background_image',
-    )));
-    // --------------------------------------------------------
-    // Ajouter un champ de type checkbox pour activer/désactiver l'image de fond
-    $wp_customize->add_setting('patobeur_frontpage_background_image_enable', array(
-        'default' => true,
-    ));
-    $wp_customize->add_control('patobeur_frontpage_background_image_enable', array(
-        'label' => __('Activer l\'image de fond', 'muca-theme'),
-        'section' => 'section_frontpage',
-        'type' => 'checkbox',
-    ));
-    // --------------------------------------------------------
-    // Ajouter un selecteur pour la couleur de fond du bloc hero
-    $wp_customize->add_setting('patobeur_frontpage_hero_background_color', array(
-        'default' => '#ffffff',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'patobeur_frontpage_hero_background_color', array(
-        'label'    => __('Couleur de fond du bloc Hero', 'muca-theme'),
-        'section'  => 'section_frontpage',
-        'settings' => 'patobeur_frontpage_hero_background_color',
-    )));
-    // --------------------------------------------------------
+			];
+			switch ($data['control']) {
+					// case 'bgimage':
+					// 	$wp_customize->add_control(new WP_Customize_Background_Image_Control($wp_customize, $key, $control_options));
+					// 	break;
+				case 'image':
+					$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, $key, $control_options));
+					break;
+				case 'color':
+					$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, $key, $control_options));
+					break;
+				default:
+					$wp_customize->add_control($key, $control_options);
+					break;
+			}
+		}
+	}
 }
 add_action('customize_register', 'patobeur_customize_register_frontpage');

@@ -1,77 +1,74 @@
 <?php
 // USER
-function patobeur_customize_register_userdatas($wp_customize)
-{
-    // SECTION user datas
-    $wp_customize->add_section('section_user', array(
-        'title'       => __('🗃️ User Datas', 'muca-theme'),
-        'priority'    => 30,
-    ));
-    // user_names
-    $wp_customize->add_setting('user_names', array(
-        'default' => 'Patobeur EtLardons',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_names', array(
-        'label'    => __('📋 Nom et prénom/Name and Surname', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_names',
-        'type'     => 'text',
-    ));
-    // user_street
-    $wp_customize->add_setting('user_street', array(
-        'default' => '2 rue de la patte',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_street', array(
-        'label'    => __('🏚️ Rue/Street', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_street',
-        'type'     => 'text',
-    ));
-    // user_city
-    $wp_customize->add_setting('user_city', array(
-        'default' => 'Lasagne sur Toast',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_city', array(
-        'label'    => __('🗺️ Ville/City', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_city',
-        'type'     => 'text',
-    ));
-    // user_zip
-    $wp_customize->add_setting('user_zip', array(
-        'default' => '01011',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_zip', array(
-        'label'    => __('📇 Code Postal/Zip', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_zip',
-        'type'     => 'text',
-    ));
-    // user_country
-    $wp_customize->add_setting('user_country', array(
-        'default' => 'Lasagna',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_country', array(
-        'label'    => __('🌎 Pays/Country', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_country',
-        'type'     => 'text',
-    ));
-    // user_mail
-    $wp_customize->add_setting('user_mail', array(
-        'default' => 'patobeur@zarbix.com',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('user_mail', array(
-        'label'    => __('📧 Mèle/Email', 'muca-theme'),
-        'section'  => 'section_user',
-        'settings' => 'user_mail',
-        'type'     => 'text',
-    ));
+// Tableau global des valeurs par défaut
+$default_customizer_user_values = array(
+    'user' => array(
+        'section' => 'user',
+        'title' => 'User Datas',
+        'emoji' => '🗃️ ',
+        'priority' => 30,
+        'datas' => array(
+            'user_names' => array(
+                'label'    => __('user_names', 'patobeur-theme'),
+                'value' => 'Patobeur EtLardons',
+                'type' => 'text',
+            ),
+            'user_street' => array(
+                'label'    => __('user_street', 'patobeur-theme'),
+                'value' => '2 rue de la patte',
+                'type' => 'text',
+            ), 
+            'user_city' => array(
+                'label'    => __('user_city', 'patobeur-theme'),
+                'value' => 'Lasagne sur Toast',
+                'type' => 'text',
+            ), 
+            'user_zip' => array(
+                'label'    => __('user_zip', 'patobeur-theme'),
+                'value' => '75001',
+                'type' => 'text',
+            ), 
+            'user_country' => array(
+                'label'    => __('user_country', 'patobeur-theme'),
+                'value' => 'Lasagna',
+                'type' => 'text',
+            ),
+            'user_mail' => array(
+                'label'    => __('user_mail', 'patobeur-theme'),
+                'value' => 'patobeur@zarbix.com',
+                'type' => 'text',
+            )
+        ),
+    ),
+);
+
+// Fonction pour enregistrer les contrôles dans le Customizer
+function patobeur_customize_register_userdatas($wp_customize) {
+    global $default_customizer_user_values;
+
+    // Parcourir les catégories de valeurs par défaut
+    foreach ($default_customizer_user_values as $category => $values) {
+        // Créer une section pour chaque catégorie
+        $wp_customize->add_section('section_' . $values['section'], array(
+            'title'       => $values['emoji'] . $values['title'],
+            'priority'    => $values['priority'],
+        ));
+
+        // Parcourir les valeurs par défaut de chaque catégorie
+        foreach ($values['datas'] as $key => $default_value) {
+            // Ajouter le contrôle pour chaque valeur avec la valeur par défaut correspondante
+            $wp_customize->add_setting($key, array(
+                'default' => $default_value['value'],
+                'sanitize_callback' => 'sanitize_text_field',
+            ));
+            $wp_customize->add_control($key, array(
+                'label'    => $default_value['label'],
+                'section'  => 'section_' . $values['section'],
+                'settings' => $key,
+                'type'     => $default_value['type'],
+            ));
+        }
+    }
 }
+
 add_action('customize_register', 'patobeur_customize_register_userdatas');

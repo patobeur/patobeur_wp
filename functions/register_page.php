@@ -4,7 +4,7 @@ function patobeur_customize_register_page($wp_customize)
 {
     // SECTION page
     $wp_customize->add_section('section_page', array(
-        'title'       => __('📄 Page & Infos', 'muca-theme'),
+        'title'       => __('📄 Page & Infos', 'patobeur-theme'),
         'priority'    => 30,
     ));
     // SLOGAN TAGLINE ENABLE or NOT
@@ -12,7 +12,7 @@ function patobeur_customize_register_page($wp_customize)
         'default' => true,
     ));
     $wp_customize->add_control('patobeur_page_hero_tagline_enable', array(
-        'label' => __('Activer le slogan', 'muca-theme'),
+        'label' => __('Activer le slogan', 'patobeur-theme'),
         'section' => 'section_page',
         'type' => 'checkbox',
     ));
@@ -22,7 +22,7 @@ function patobeur_customize_register_page($wp_customize)
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('page_titre', array(
-        'label'    => __('Titre Page', 'muca-theme'),
+        'label'    => __('Titre Page', 'patobeur-theme'),
         'section'  => 'section_page',
         'settings' => 'page_titre',
         'type'     => 'text',
@@ -34,7 +34,7 @@ function patobeur_customize_register_page($wp_customize)
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('patobeur_page_contentpage_width', array(
-        'label' => __('Largeur du style content-page', 'muca-theme'),
+        'label' => __('Largeur du style content-page', 'patobeur-theme'),
         'section' => 'section_page',
         'type' => 'text',
     ));
